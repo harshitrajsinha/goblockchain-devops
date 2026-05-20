@@ -13,9 +13,10 @@ import (
 	"net/http"
 	"path"
 	"strconv"
+	"strings"
 )
 
-const tempDir = "templates"
+const tempDir = "wallet_server/templates"
 
 type WalletServer struct {
 	port    uint16
@@ -133,6 +134,12 @@ func (ws *WalletServer) WalletAmount(w http.ResponseWriter, req *http.Request) {
 
 		w.Header().Add("Content-Type", "application/json")
 		if bcsResp.StatusCode == 200 {
+			contentType := bcsResp.Header.Get("Content-Type")
+
+			if !strings.Contains(contentType, "application/json") {
+				_, _ = io.ReadAll(bcsResp.Body)
+				return
+			}
 			decoder := json.NewDecoder(bcsResp.Body)
 			var bar block.AmountResponse
 			err := decoder.Decode(&bar)
