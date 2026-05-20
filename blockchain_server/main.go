@@ -1,17 +1,30 @@
 package main
 
 import (
-	"flag"
 	"log"
+	"os"
+	"fmt"
+	"strconv"
+	"github.com/joho/godotenv"
 )
 
 func init() {
+	_ = godotenv.Load()
 	log.SetPrefix("Blockchain: ")
 }
 
 func main() {
-	port := flag.Uint("port", 5000, "TCP Port Number for Blockchain Server")
-	flag.Parse()
-	app := NewBlockchainServer(uint16(*port))
+	var port int
+	var err error
+	portInStr := os.Getenv("BLOCKCHAIN_SERVER_PORT")
+	if portInStr == ""{
+		port = 5000
+	}else{
+		port, err = strconv.Atoi(portInStr)
+		if err != nil {
+			log.Fatalf("Invalid Blockchain Port set as environment variable: Needs to be in digits")
+		}
+	}
+	app := newBlockchainServer(uint16(port))
 	app.Run()
 }

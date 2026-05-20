@@ -4,5 +4,6 @@ go 1.26.1
 
 require (
 	github.com/btcsuite/btcutil v1.0.2
+	github.com/joho/godotenv v1.5.1
 	golang.org/x/crypto v0.51.0
 )

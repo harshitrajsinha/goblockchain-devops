@@ -54,7 +54,6 @@ Clone the repository and initialize dependencies:
 ```bash
 git clone https://github.com/dkv204p/goblockchain.git
 cd goblockchain
-go mod init goblockchain
 go mod tidy
 ````
 
@@ -64,12 +63,16 @@ go mod tidy
 
 You need to run both the **blockchain server** and the **wallet server** in separate terminals.
 
+Use .env.example to set .env
+
 ### 1️⃣ Start the Blockchain Server
 
+Set `BLOCKCHAIN_SERVER_PORT` value in .env (if not set default port will be 5000)
+
 ```bash
-cd blockchain_server
-go run . --port=5000
+go run ./blockchain_server
 ```
+Note down the BLOCKCHAIN_SERVER host
 
 * Runs a blockchain node
 * Begins mining automatically
@@ -77,9 +80,12 @@ go run . --port=5000
 
 ### 2️⃣ Start the Wallet Server
 
+Set `WALLET_SERVER_PORT` value in .env (if not set default port will be 8080)
+
+Set `BLOCKCHAIN_SERVER_HOST` value in .env (based on value of BLOCKCHAIN_SERVER host of previous step, if not set default host will be http://127.0.0.1)
+
 ```bash
-cd wallet_server
-go run . --port=8080 --gateway="http://127.0.0.1:5000"
+go run ./wallet_server
 ```
 
 * Starts the wallet’s web server

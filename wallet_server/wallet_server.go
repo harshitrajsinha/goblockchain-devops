@@ -23,7 +23,7 @@ type WalletServer struct {
 	gateway string
 }
 
-func NewWalletServer(port uint16, gateway string) *WalletServer {
+func newWalletServer(port uint16, gateway string) *WalletServer {
 	return &WalletServer{port, gateway}
 }
 

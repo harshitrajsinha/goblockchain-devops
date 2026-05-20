@@ -17,7 +17,7 @@ type BlockchainServer struct {
 	port uint16
 }
 
-func NewBlockchainServer(port uint16) *BlockchainServer {
+func newBlockchainServer(port uint16) *BlockchainServer {
 	return &BlockchainServer{port}
 }
 
