@@ -1,0 +1,28 @@
+# This workflow triggers a CI pipeline that does security scanning and if passed creates docker image for Release
+name: goblockchain-CI
+
+on:
+  push:
+    branches:
+      - test
+    ignore_paths:
+      - '**/*.md'
+      - 'docs'
+      - 'k8s'
+
+jobs:
+
+  security-scans:
+    runs-on: ubuntu-latest
+
+  steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    
+    - name: Setup Golang v1.26
+      uses: actions/setup-go@v5
+      with:
+        go-version: '1.26'
+
+    - name: Check secret leaks in the repository
+      uses: gitleaks/gitleaks-action@v2
