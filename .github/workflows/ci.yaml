@@ -26,6 +26,15 @@ jobs:
 
     - name: Check secret leaks in the repository
       uses: gitleaks/gitleaks-action@v2
+    
+    - name: Download dependencies
+      uses: go mod Download
+
+    - name: Build blockchain server
+      run: go build ./blockchain_server
+
+    - name: Build wallet server
+      run: go build ./wallet_server
 
     - name: Check linting
       uses: golangci/golangci-lint-action@v6
