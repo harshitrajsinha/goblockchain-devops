@@ -31,10 +31,10 @@ jobs:
       run: go mod download
 
     - name: Build blockchain server
-      run: go build ./blockchain_server
+      run: go build -o blockchain_server ./blockchain_server
 
     - name: Build wallet server
-      run: go build ./wallet_server
+      run: go build -o wallet_server ./wallet_server
 
     - name: Check linting
       uses: golangci/golangci-lint-action@v6
