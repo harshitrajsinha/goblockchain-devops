@@ -26,3 +26,8 @@ jobs:
 
     - name: Check secret leaks in the repository
       uses: gitleaks/gitleaks-action@v2
+
+    - name: Check linting
+      uses: golangci/golangci-lint-action@v6
+      with:
+        version: v1.56.2
