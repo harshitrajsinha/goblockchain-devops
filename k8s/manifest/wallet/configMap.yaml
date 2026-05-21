@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: wlc-cmp
+  namespace: wallet
+data:
+  blc-server-port: "5050"
+  blc-server-host: "blc-service.default.cluster.local"
+  wlc-server-port: "8081"

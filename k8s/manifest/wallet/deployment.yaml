@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wlc-deployment
+  namespace: wallet
+  labels:
+    app: wlc-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: wlc-server
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: wlc-server
+    spec:
+      containers:
+        - name: wlc-container
+          image: harshitrajsinha/gobl/wlcserver:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8081
+          env:
+            - name: BLOCKCHAIN_SERVER_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: wlc-cmp
+                  key: blc-server-port
+            - name: BLOCKCHAIN_SERVER_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: wlc-cmp
+                  key: blc-server-host
+            - name: WALLET_SERVER_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: wlc-cmp
+                  key: wlc-server-port
