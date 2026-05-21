@@ -28,7 +28,7 @@ jobs:
       uses: gitleaks/gitleaks-action@v2
     
     - name: Download dependencies
-      run: go mod Download
+      run: go mod download
 
     - name: Build blockchain server
       run: go build ./blockchain_server
