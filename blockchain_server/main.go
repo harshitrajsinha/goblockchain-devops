@@ -3,7 +3,6 @@ package main
 import (
 	"log"
 	"os"
-	"fmt"
 	"strconv"
 	"github.com/joho/godotenv"
 )
