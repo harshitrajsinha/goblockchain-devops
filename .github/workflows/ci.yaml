@@ -37,6 +37,6 @@ jobs:
       run: go build -o wallet_server ./wallet_server
 
     - name: Check linting
-      golangci/golangci-lint-action@v6
+      uses: golangci/golangci-lint-action@v6
       with:
         version: latest
