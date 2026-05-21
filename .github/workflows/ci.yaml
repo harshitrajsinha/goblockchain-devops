@@ -15,7 +15,7 @@ jobs:
   security-scans:
     runs-on: ubuntu-latest
 
-  steps:
+    steps:
     - name: Checkout repository
       uses: actions/checkout@v4
     
