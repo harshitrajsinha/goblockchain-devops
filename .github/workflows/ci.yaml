@@ -7,8 +7,8 @@ on:
       - test
     paths-ignore:
       - '**/*.md'
-      - 'docs'
-      - 'k8s'
+      - 'docs/**'
+      - 'k8s/**'
 
 jobs:
 
