@@ -5,7 +5,7 @@ on:
   push:
     branches:
       - test
-    ignore_paths:
+    paths-ignore:
       - '**/*.md'
       - 'docs'
       - 'k8s'
